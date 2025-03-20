@@ -24,24 +24,29 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(left: 20, right: 20, top: 20),
           child: Column(
             children: [
               Row(
-                spacing: 15,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundImage: AssetImage('assets/images/adan.jpg'),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Akhdan Jauzaa', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                        Text('Musisian',)
-                      ],
-                    )
+                  Text("Form Page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
                 ],
+        
+                // spacing: 15,
+                // children: [
+                //   CircleAvatar(
+                //     radius: 35,
+                //     backgroundImage: AssetImage('assets/images/adan.jpg'),
+                //     ),
+                //     Column(
+                //       crossAxisAlignment: CrossAxisAlignment.start,
+                //       children: [
+                //         Text(' ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
+                //         Text('',)
+                //       ],
+                //     )
+                // ],
               ),
               Form(
                 key: key,
