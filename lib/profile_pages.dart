@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
 
@@ -13,13 +12,13 @@ class _ProfilePageState extends State<ProfilePage> {
   final key = GlobalKey<FormState>();
   List<String> daftarLagu = [];
 
-  void addData(){
+  void addData() {
     setState(() {
       daftarLagu.add(songController.text);
     });
   }
 
-  DateTime? _selectedDate; 
+  DateTime? _selectedDate;
 
   Future<void> _pickDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
@@ -46,9 +45,12 @@ class _ProfilePageState extends State<ProfilePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Form Page", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),),
+                  Text(
+                    "Form Page",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
                 ],
-        
+
                 // spacing: 15,
                 // children: [
                 //   CircleAvatar(
@@ -65,61 +67,97 @@ class _ProfilePageState extends State<ProfilePage> {
                 // ],
               ),
               Row(
-                children: [
-                  Text("Task Date: ", style: TextStyle(fontSize: 18)),],
+                children: [Text("Task Date: ", style: TextStyle(fontSize: 18))],
               ),
               Row(
-              children: [
-                Text(_selectedDate == null
-                    ? "Select a date"
-                    : "${_selectedDate!.toLocal()}".split(' ')[0]),
-                IconButton(
-                  icon: Icon(Icons.calendar_today),
-                  onPressed: () => _pickDate(context),
-                ),
-              ],
-            ),
+                children: [
+                  Text(
+                    _selectedDate == null
+                        ? "Select a date"
+                        : "${_selectedDate!.toLocal()}".split(' ')[0],
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.calendar_today),
+                    onPressed: () => _pickDate(context),
+                  ),
+                ],
+              ),
               Form(
                 key: key,
                 child: Row(
-                children: [
-                  Expanded(child: TextFormField(
-                    validator: (value) {
-                      if (value == null || value.isEmpty){
-                        return 'Harap Masukan Lagu yang kamu suka';
-                      }
-                      return null;
-                    },
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    controller: songController,
-                    decoration: InputDecoration(
-                      label: Text('Fav Song'),
-                      hintText: 'Masukan Lagu',
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return 'Please enter some text';
+                          }
+                          return null;
+                        },
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        controller: songController,
+                        decoration: InputDecoration(
+                          label: Text('First Name'),
+                          hintText: 'First Name',
+                        ),
                       ),
-                    )
-                  ),
-                  OutlinedButton(onPressed: (){
-                    if (key.currentState!.validate()){
-                      addData();
-                    }
-                  }, child: Text('Submit')),
-                ],
-              )),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        if (key.currentState!.validate()) {
+                          addData();
+                        }
+                      },
+                      child: Text('Submit'),
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 61, 14, 136),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                "List Task",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              ),
               const SizedBox(height: 20),
-              Expanded(child: ListView.builder(
-                itemCount: daftarLagu.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    margin: EdgeInsets.only(bottom: 15),
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10.0),
-                      color: Colors.indigo[100]),
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [Text(daftarLagu[index])],),
-                  );
-                })
-              )
+              Expanded(
+                child: ListView.builder(
+                  itemCount: daftarLagu.length,
+                  itemBuilder: (context, index) {
+                    return Container(
+                      margin: EdgeInsets.only(bottom: 15),
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.0),
+                        color: Colors.indigo[100],
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  tasks[index]['name'],
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),
