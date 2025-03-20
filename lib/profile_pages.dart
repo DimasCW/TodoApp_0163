@@ -19,6 +19,8 @@ class _ProfilePageState extends State<ProfilePage> {
     });
   }
 
+  DateTime? _selectedDate; 
+
   Future<void> _pickDate(BuildContext context) async {
     DateTime? picked = await showDatePicker(
       context: context,
