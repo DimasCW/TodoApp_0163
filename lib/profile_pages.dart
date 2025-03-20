@@ -12,9 +12,17 @@ class _ProfilePageState extends State<ProfilePage> {
   final key = GlobalKey<FormState>();
   List<String> daftarLagu = [];
 
-  void addData() {
+  void addTask() {
     setState(() {
-      daftarLagu.add(songController.text);
+      tasks.add({
+        'name': taskController.text,
+        'deadline': _selectedDate != null
+            ? "${_selectedDate!.toLocal()}".split(' ')[0]
+            : 'No deadline',
+        'done': false,
+      });
+      taskController.clear();
+      _selectedDate = null;
     });
   }
 
