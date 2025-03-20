@@ -8,6 +8,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+    final TextEditingController taskController = TextEditingController();
   final TextEditingController songController = TextEditingController();
   final key = GlobalKey<FormState>();
   List<Map<String, dynamic>> tasks = [];
