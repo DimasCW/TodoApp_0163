@@ -10,7 +10,7 @@ class ProfilePage extends StatefulWidget {
 class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController songController = TextEditingController();
   final key = GlobalKey<FormState>();
-  List<String> daftarLagu = [];
+  List<Map<String, dynamic>> tasks = [];
 
   void addTask() {
     setState(() {
