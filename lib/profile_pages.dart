@@ -8,7 +8,7 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-    final TextEditingController taskController = TextEditingController();
+  final TextEditingController taskController = TextEditingController();
   final TextEditingController songController = TextEditingController();
   final key = GlobalKey<FormState>();
   List<Map<String, dynamic>> tasks = [];
@@ -17,9 +17,10 @@ class _ProfilePageState extends State<ProfilePage> {
     setState(() {
       tasks.add({
         'name': taskController.text,
-        'deadline': _selectedDate != null
-            ? "${_selectedDate!.toLocal()}".split(' ')[0]
-            : 'No deadline',
+        'deadline':
+            _selectedDate != null
+                ? "${_selectedDate!.toLocal()}".split(' ')[0]
+                : 'No deadline',
         'done': false,
       });
       taskController.clear();
@@ -151,7 +152,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         color: Colors.indigo[100],
                       ),
                       child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: Column(
@@ -159,16 +159,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               children: [
                                 Text(
                                   tasks[index]['name'],
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: TextStyle(fontSize: 18),
                                 ),
                                 Text('Deadline: ${tasks[index]['deadline']}'),
                               ],
                             ),
                           ),
-
                           Checkbox(
                             value: tasks[index]['done'],
                             onChanged: (bool? value) {
