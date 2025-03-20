@@ -34,6 +34,12 @@ class _ProfilePageState extends State<ProfilePage> {
     }
   }
 
+  void toggleTaskStatus(int index) {
+    setState(() {
+      tasks[index]['done'] = !tasks[index]['done'];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
