@@ -72,21 +72,6 @@ class _ProfilePageState extends State<ProfilePage> {
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
-
-                // spacing: 15,
-                // children: [
-                //   CircleAvatar(
-                //     radius: 35,
-                //     backgroundImage: AssetImage('assets/images/adan.jpg'),
-                //     ),
-                //     Column(
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         Text(' ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                //         Text('',)
-                //       ],
-                //     )
-                // ],
               ),
               Row(
                 children: [Text("Task Date: ", style: TextStyle(fontSize: 18))],
@@ -98,6 +83,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
                               _selectedDate == null
@@ -156,7 +142,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           }
                         }
                       },
-                      child: Text('Submit'),
+                      child: Text('Submit',
+                          style: TextStyle(color: Colors.white)),
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(
                           const Color.fromARGB(255, 61, 14, 136),
@@ -167,9 +154,14 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
               SizedBox(height: 20),
-              Text(
-                "List Task",
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "List Task",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                ],
               ),
               const SizedBox(height: 20),
               Expanded(
