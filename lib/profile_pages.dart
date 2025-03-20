@@ -14,13 +14,10 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Map<String, dynamic>> tasks = [];
 
   void addTask() {
-    if(_selectedDate == null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Please select a date'),
-        ),
-      );
-      return;
+    if (_selectedDate == null) {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('Please select a date')));
     }
 
     setState(() {
@@ -96,17 +93,34 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Row(
                 children: [
-                  Text(
-                    _selectedDate == null
-                        ? "Select a date"
-                        : "${_selectedDate!.toLocal()}".split(' ')[0],
-                  ),
-                  IconButton(
-                    icon: Icon(Icons.calendar_today),
-                    onPressed: () => _pickDate(context),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              _selectedDate == null
+                                  ? "Select a date"
+                                  : "${_selectedDate!.toLocal()}".split(' ')[0],
+                            ),
+                            IconButton(
+                              icon: Icon(Icons.calendar_today),
+                              onPressed: () => _pickDate(context),
+                            ),
+                          ],
+                        ),
+                        if (_selectedDate == null)
+                          Text(
+                            'Please select a date',
+                            style: TextStyle(color: Colors.red, fontSize: 12),
+                          ),
+                      ],
+                    ),
                   ),
                 ],
               ),
+            
               Form(
                 key: key,
                 child: Row(
@@ -176,11 +190,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                     'Done',
                                     style: TextStyle(color: Colors.green),
                                   )
-                                  else
-                                    Text(
-                                      'Not Done',
-                                      style: TextStyle(color: Colors.red),
-                                    ),
+                                else
+                                  Text(
+                                    'Not Done',
+                                    style: TextStyle(color: Colors.red),
+                                  ),
                               ],
                             ),
                           ),
