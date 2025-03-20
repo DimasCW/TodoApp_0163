@@ -12,25 +12,25 @@ class _ProfilePageState extends State<ProfilePage> {
   final TextEditingController songController = TextEditingController();
   final key = GlobalKey<FormState>();
   List<Map<String, dynamic>> tasks = [];
+  bool _showDateError = false;
 
   void addTask() {
     if (_selectedDate == null) {
-      ScaffoldMessenger.of(
-        context,
-      ).showSnackBar(SnackBar(content: Text('Please select a date')));
+      setState(() {
+        _showDateError = true;
+      });
+      return;
     }
 
     setState(() {
       tasks.add({
         'name': taskController.text,
-        'deadline':
-            _selectedDate != null
-                ? "${_selectedDate!.toLocal()}".split(' ')[0]
-                : 'No deadline',
+        'deadline': "${_selectedDate!.toLocal()}".split(' ')[0],
         'done': false,
       });
       taskController.clear();
       _selectedDate = null;
+      _showDateError = false;
     });
   }
 
@@ -110,7 +110,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                           ],
                         ),
-                        if (_selectedDate == null)
+                        if (_showDateError && _selectedDate == null)
                           Text(
                             'Please select a date',
                             style: TextStyle(color: Colors.red, fontSize: 12),
@@ -120,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-            
+
               Form(
                 key: key,
                 child: Row(
@@ -144,7 +144,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     ElevatedButton(
                       onPressed: () {
                         if (key.currentState!.validate()) {
-                          addTask();
+                          if (_selectedDate == null) {
+                            setState(() {
+                              _showDateError = true;
+                            });
+                          } else {
+                            addTask();
+                            setState(() {
+                              _showDateError = false;
+                            });
+                          }
                         }
                       },
                       child: Text('Submit'),
