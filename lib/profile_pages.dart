@@ -62,6 +62,22 @@ class _ProfilePageState extends State<ProfilePage> {
                 //     )
                 // ],
               ),
+              Row(
+                children: [
+                  Text("Task Date: ", style: TextStyle(fontSize: 18)),
+            Row(
+              children: [
+                Text(_selectedDate == null
+                    ? "Select a date"
+                    : "${_selectedDate!.toLocal()}".split(' ')[0]),
+                IconButton(
+                  icon: Icon(Icons.calendar_today),
+                  onPressed: () => _pickDate(context),
+                ),
+              ],
+            ),
+                ],
+              ),
               Form(
                 key: key,
                 child: Row(
