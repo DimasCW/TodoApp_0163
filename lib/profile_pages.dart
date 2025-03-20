@@ -66,8 +66,9 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Row(
                 children: [
-                  Text("Task Date: ", style: TextStyle(fontSize: 18)),
-            Row(
+                  Text("Task Date: ", style: TextStyle(fontSize: 18)),],
+              ),
+              Row(
               children: [
                 Text(_selectedDate == null
                     ? "Select a date"
@@ -78,8 +79,6 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ],
             ),
-                ],
-              ),
               Form(
                 key: key,
                 child: Row(
