@@ -164,6 +164,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
+                                Text('Deadline: ${tasks[index]['deadline']}'),
                               ],
                             ),
                           ),
