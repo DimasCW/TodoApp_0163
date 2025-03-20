@@ -173,7 +173,7 @@ class _ProfilePageState extends State<ProfilePage> {
                       padding: const EdgeInsets.all(16.0),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10.0),
-                        color: Colors.indigo[100],
+                        color: const Color.fromARGB(255, 219, 219, 219),
                       ),
                       child: Row(
                         children: [
