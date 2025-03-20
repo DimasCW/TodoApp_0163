@@ -120,7 +120,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     ElevatedButton(
                       onPressed: () {
                         if (key.currentState!.validate()) {
-                          addData();
+                          addTask();
                         }
                       },
                       child: Text('Submit'),
@@ -141,7 +141,7 @@ class _ProfilePageState extends State<ProfilePage> {
               const SizedBox(height: 20),
               Expanded(
                 child: ListView.builder(
-                  itemCount: daftarLagu.length,
+                  itemCount: tasks.length,
                   itemBuilder: (context, index) {
                     return Container(
                       margin: EdgeInsets.only(bottom: 15),
