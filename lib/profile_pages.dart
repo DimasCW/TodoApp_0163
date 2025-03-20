@@ -14,6 +14,15 @@ class _ProfilePageState extends State<ProfilePage> {
   List<Map<String, dynamic>> tasks = [];
 
   void addTask() {
+    if(_selectedDate == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Please select a date'),
+        ),
+      );
+      return;
+    }
+
     setState(() {
       tasks.add({
         'name': taskController.text,
@@ -162,6 +171,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                   style: TextStyle(fontSize: 18),
                                 ),
                                 Text('Deadline: ${tasks[index]['deadline']}'),
+                                if (tasks[index]['done'])
+                                  Text(
+                                    'Done',
+                                    style: TextStyle(color: Colors.green),
+                                  )
+                                  else
+                                    Text(
+                                      'Not Done',
+                                      style: TextStyle(color: Colors.red),
+                                    ),
                               ],
                             ),
                           ),
