@@ -167,6 +167,13 @@ class _ProfilePageState extends State<ProfilePage> {
                               ],
                             ),
                           ),
+
+                          Checkbox(
+                            value: tasks[index]['done'],
+                            onChanged: (bool? value) {
+                              toggleTaskStatus(index);
+                            },
+                          ),
                         ],
                       ),
                     );
