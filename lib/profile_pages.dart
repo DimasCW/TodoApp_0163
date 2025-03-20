@@ -111,7 +111,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           return null;
                         },
                         autovalidateMode: AutovalidateMode.onUserInteraction,
-                        controller: songController,
+                        controller: taskController,
                         decoration: InputDecoration(
                           label: Text('First Name'),
                           hintText: 'First Name',
